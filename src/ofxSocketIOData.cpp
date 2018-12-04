@@ -19,8 +19,9 @@ void ofxSocketIOData::setNullData () {
  */
 std::string ofxSocketIOData::getStringValue(std::string key) {
   std::string result;
-  if (_data) {
-    result = _data->get_map()[key]->get_string();
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    result = map[key]->get_string();
   } else {
     result = "";
   }
@@ -29,8 +30,9 @@ std::string ofxSocketIOData::getStringValue(std::string key) {
 
 int ofxSocketIOData::getIntValue(std::string key) {
   int result;
-  if (_data) {
-    result = _data->get_map()[key]->get_int();
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    result = map[key]->get_int();
   } else {
     result = NULL;
   }
@@ -39,8 +41,9 @@ int ofxSocketIOData::getIntValue(std::string key) {
 
 float ofxSocketIOData::getFloatValue(std::string key) {
   double result;
-  if (_data) {
-    result = (float) _data->get_map()[key]->get_double();
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    result = (float) map[key]->get_double();
   } else {
     result = NULL;
   }
@@ -49,8 +52,9 @@ float ofxSocketIOData::getFloatValue(std::string key) {
 
 double ofxSocketIOData::getDoubleValue(std::string key) {
   double result;
-  if (_data) {
-    result = _data->get_map()[key]->get_double();
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    result = map[key]->get_double();
   } else {
     result = NULL;
   }
@@ -59,8 +63,9 @@ double ofxSocketIOData::getDoubleValue(std::string key) {
 
 bool ofxSocketIOData::getBoolValue(std::string key) {
   bool result;
-  if (_data) {
-    result = _data->get_map()[key]->get_bool();
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    result = map[key]->get_bool();
   } else {
     result = NULL;
   }
@@ -70,8 +75,9 @@ bool ofxSocketIOData::getBoolValue(std::string key) {
 ofxSocketIOData ofxSocketIOData::getNestedValue(std::string key) {
   sio::message::ptr data;
   ofxSocketIOData result;
-  if (_data) {
-    data = _data->get_map()[key];
+  auto map = _data->get_map();
+  if (_data && map.count(key) > 0) {
+    data = map[key];
     result.setData(data);
   } else {
     result.setData(data);
